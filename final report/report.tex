@@ -1,0 +1,294 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage{color}
+\usepackage{biblatex}
+\usepackage{tabularx}
+\usepackage{float}
+
+\addbibresource{reference.bib}
+
+\geometry{
+a4paper,
+total={210mm,297mm},
+left=1.15in,
+right=0.85in,
+top=1.0in,
+bottom=1.0in,
+}
+
+\begin{document}
+
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%% Front Page  %%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+{\large \textbf{Visvesvaraya Technological University, Belagavi – 590018.}}
+\begin{figure}[hbtp]
+\centering
+%\includegraphics[width=2.3cm,height=3cm]{vtu.jpg}
+\end{figure}
+
+\textbf{A MINI PROJECT REPORT}
+\par
+\textbf{ON}
+\par
+\vspace{6pt}
+{\Large \textbf{SWACHHASETU}}
+\par
+\vspace{12pt}
+\par
+\textit{\textbf{Submitted in partial fulfillment for the award of degree of }}
+\par
+\vspace{12pt}
+\large \textbf{BACHELOR OF ENGINEERING }
+\par
+\textbf{in}
+\par
+\large \textbf{COMPUTER SCIENCE \& ENGINEERING }
+\par
+\vspace{12pt}
+\textit{\textbf{Submitted by}}
+
+\begin{center}
+\begin{tabular}{l@{\hspace{2cm}}r}
+\textbf{\large Prathamesh Prabhu } & \textbf{4CB23CS115} \\
+\textbf{\large Priyanka V. Gaonkar } & \textbf{4CB23CS120} \\
+\end{tabular}
+\end{center}
+
+\vspace{12pt}
+\textit{\textbf{Under the Guidance of}}
+\par
+\vspace{6pt}
+\textbf{Mrs. Babitha Ganesh Kulal }
+\par
+\vspace{2pt}
+\normalsize { Designation, Department of CSE }
+\par
+\begin{figure}[hbtp]
+\centering
+%\includegraphics[scale=0.6]{./pic/CEC-logo}\textbf{}
+\end{figure}
+\large \textbf{DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING}
+\par \Large \textbf{CANARA ENGINEERING COLLEGE}
+
+{\large{(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC 'A' GRADE)}}
+\par
+{\large \textbf{Sudhindra Nagar, Benjanapadavu, Mangaluru - 574219, Karnataka.}}
+\par 
+{\Large \textbf{2025-26}}
+\end{center}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Certificate Page %%%%%%%%%%%%%%%
+
+\begin{center}
+\LARGE \textbf{CANARA ENGINEERING COLLEGE}
+\par
+
+\par \large{(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE)}
+\par \vspace{3pt}
+\large \textbf{Sudhindra Nagar, Benjanapadavu, Mangaluru - 574219, Karnataka.}
+\par \vspace{12pt}  
+\par
+\large \textbf{DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING }
+\par
+\begin{figure}[hbtp]
+\centering
+%\includegraphics[scale=0.5]{./pic/CEC-logo}
+\end{figure}
+
+
+{\Large \textbf{CERTIFICATE}}
+\end{center}
+\justifying
+\par
+\setstretch{1.2}
+\noindent 
+This is to certify that the mini project work entitled \textbf{SWACHHASETU} carried out by \textbf{Mr. Prathamesh Prabhu(4CB23CS115)} and \textbf{Ms. Priyanka V. Gaonkar(4CB23CS120) } bonafide studnets of \textbf{CANARA ENGINEERING COLLEGE} in partial fulfillment for the award of Bachelor of Engineering in COMPUTER SCIENCE \& ENGINEERING of the Visvesvaraya Technological University, Belagavi during the year 2025-26. It is certified that all corrections/suggestions indicated for Internal Assessment as indicated during internal assessment. The project report has been approved as it satisfies the academic requirements in respect of project work prescribed for the said degree. 
+
+\par
+\vspace{0.55in}
+\setstretch{1.15}
+
+\begin{tabularx}{0.95 \textwidth} { 
+   >{\raggedright\arraybackslash}X 
+   >{\raggedleft\arraybackslash}X }
+     \textbf{Mrs. Babitha Ganesh Kulal } & \textbf{Prof/Dr.  HoD-Name} \\
+     Project Guide &  HoD     \,\,\,\,\,\,\,\ \\
+\end{tabularx}
+
+\par
+\vspace{0.55in}
+\setstretch{1.15}
+
+
+
+
+\begin{flushleft}
+1. \ldots\ldots\ldots\ldots\ldots\ldots \ldots \hspace{5.8cm} \,\,\,\,\,\,\,\,\,\,\,\,\,\,\ \ldots\ldots\ldots\ldots \ldots\ldots\ldots 
+\par
+\vspace{0.1in}	
+2. \ldots\ldots\ldots\ldots\ldots\ldots \ldots \hspace{5.8cm} \,\,\,\,\,\,\,\,\,\,\,\,\,\,\ \ldots\ldots\ldots\ldots \ldots\ldots\ldots 
+\end{flushleft}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%% Declaration Page  %%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{plain}
+\setstretch{1.5}
+\pagenumbering{roman}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{\numberline{}Abstract}
+The abstract of a mini project report should be concise, typically within 150–250 words and written in a single paragraph. It should briefly present the background or motivation of the study, state the main objective, describe the methods or technologies used, and summarize the key results or outcomes. The abstract must end with the significance or potential applications of the project. It should be written in a formal tone using clear and simple language, avoiding technical jargon, references, figures, or tables.
+\par
+Keywords : Keywords related to your project.
+\setstretch{1.2}
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\addcontentsline{toc}{chapter}{\numberline{}Table of Contents}
+\listoffigures
+\addcontentsline{toc}{chapter}{\numberline{}List of Figures}
+\listoftables
+\addcontentsline{toc}{chapter}{\numberline{}List of Tables}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%% Headders and Footers %%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\fontsize{10}{12} \selectfont PROJ-TITLE }
+\rhead{\fontsize{10}{12} \selectfont Chapter \thechapter}
+\lfoot{\fontsize{10}{12} \selectfont Department of DEPT-NAME, CEC, Benjanapadavu,Mangaluru}
+\rfoot{\fontsize{10}{12} \selectfont Page \thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 1:Introduction %%%%%%%%%%%%%%%%%%%%%
+
+\setstretch{1.2}
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+The introduction should provide a brief background of the problem domain, explaining the importance and relevance of the project. It should clearly state the problem addressed and the motivation behind choosing the topic. The objectives of the project must be mentioned, outlining the main goals to be achieved through the proposed system. The introduction should also define the scope of the work, specifying what is covered and any limitations. Finally, it may include a short overview of the methodology or technologies used and a brief outline of the report structure.
+
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 2:Literature Survey %%%%%%%%%%%%%%%%
+
+\chapter{Literature Survey}
+
+The literature survey section should include a review of a minimum of ten research papers closely related to the project topic. For each paper, you should briefly describe the aim of the study, methods used, major findings, and relevance to your project\cite{choki2022design}. \\
+In addition to the written description, you should also include a summary table that highlights key details from each reviewed paper for easy comparison\cite{govindaraj2020online}. The table may contain columns such as Author(s) \& Year, Title of the Paper, Methodology/Technique Used, Findings/Results, and limitations.
+
+
+
+\begin{table}[H]
+\centering
+\caption{Summary of Literature Review}
+\begin{tabular}{|p{1cm}|p{3cm}|p{3cm}|p{2.5cm}|p{2cm}|p{2.5cm}|}
+\hline
+\textbf{Sl. No.} & \textbf{Author(s) \& Year} & \textbf{Title} & \textbf{Methodology} & \textbf{Findings} & \textbf{Limitations} \\
+\hline
+1 & A. Kumar et al. (2021) & Machine Learning for Crop Yield Prediction & Random Forest Regression & Achieved 92\% accuracy in yield prediction & Limited dataset and region coverage \\
+\hline
+\end{tabular}
+\end{table}
+
+
+   
+%%%%%%%%% CHapetr 3:Software Requirements Specification %%%%%%%%%%%%
+
+\chapter{System Analysis and Design}
+
+\begin{itemize}
+    \item \textbf{Existing System:} Explain the current methods or systems being used for the same purpose. Highlight their drawbacks, limitations, and inefficiencies that justify the need for improvement.
+
+    \item \textbf{Proposed System:} Describe the newly developed system, its objectives, and how it overcomes the shortcomings of the existing system. Emphasize its advantages, improved performance, and innovative aspects\cite{indrason2021blockchain}.
+
+    \item \textbf{System Requirements:} List both hardware and software requirements essential for implementation. Mention system configuration, tools, programming languages, and platforms used.
+
+    \item \textbf{System Design:} Present the overall structure and workflow of the proposed system using diagrams such as the System Architecture Diagram, Data Flow Diagram (DFD), and UML diagrams (Use Case, Class, and Sequence diagrams). Each diagram should be followed by a short explanation describing its purpose and functionality.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 4: System Design %%%%%%%%%%%%%%%%%
+
+ \newpage
+ \chapter{Implementation}
+
+\begin{itemize}
+    \item \textbf{Overview:} Describe the overall implementation process and how the system components were integrated to achieve the project objectives.
+    
+    \item \textbf{Modules Description:} Explain each functional module of the system, its purpose, and how it interacts with other modules.
+    
+    \item \textbf{Algorithm / Pseudocode:} Present the main algorithm or logic flow used in the system. Include pseudocode or step-by-step procedures for the core functions.
+    
+    \item \textbf{Tools and Technologies Used:} Mention the programming languages, frameworks, libraries, and development tools used for implementation.
+    
+    \item \textbf{Interface and Screenshots:} Display the key interfaces or output screens of the system with brief explanations of their functions.
+\end{itemize}
+% Code for inserting figure
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.8\textwidth]{pic/modular.png}
+\caption{System Architecture Diagram}
+\label{fig:architecture}
+\end{figure}
+As shown in Figure~\ref{fig:architecture}, the proposed system consists of multiple interconnected modules that handle data processing, model training, and visualization.
+
+\newpage
+
+% -------------------- Chapter 5 --------------------
+\chapter{Results and Discussion}
+
+\begin{itemize}
+    \item \textbf{Overview:} Summarize the experiments or testing conducted to evaluate the system.
+    
+    \item \textbf{Results:} Present the obtained results in the form of tables, charts, or screenshots. Highlight the major outcomes achieved.
+    
+    \item \textbf{Performance Evaluation:} Discuss how the system performs compared to expectations or existing solutions in terms of accuracy, speed, efficiency, or usability.
+    
+    \item \textbf{Discussion:} Interpret the results, relate them to the objectives, and discuss any observations or insights gained during implementation.
+    
+    \item \textbf{Limitations:} Mention any constraints or limitations identified during testing and implementation.
+\end{itemize}
+
+% -------------------- Chapter 6 --------------------
+\chapter{Conclusion and Future Work}
+
+\begin{itemize}
+    \item \textbf{Conclusion:} Provide a concise summary of the project, including the problem addressed, approach adopted, and key outcomes achieved.
+    
+    \item \textbf{Achievements:} Highlight the major contributions or innovations of your project and how they meet the stated objectives.
+    
+    \item \textbf{Limitations:} Briefly restate the system’s current limitations or areas that could not be covered within this scope.
+    
+    \item \textbf{Future Enhancements:} Suggest possible improvements, extensions, or new features that can be added in future work to enhance the system’s performance or usability.
+\end{itemize}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagestyle{plain}
+\renewcommand{\bibname}{References}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
