@@ -1,294 +1,1018 @@
-\documentclass[12pt,a4paper]{report}
-\usepackage[utf8]{inputenc}
-\usepackage{amsfonts}
-\usepackage{setspace}
+\documentclass[12pt, a4paper]{report}
 \usepackage{graphicx}
-\usepackage{array}
-\usepackage{fancyhdr}
+\usepackage{csquotes}
 \usepackage{geometry}
 \usepackage{ragged2e}
-\usepackage{color}
-\usepackage{biblatex}
-\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{mathptmx}
 \usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
 
-\addbibresource{reference.bib}
 
-\geometry{
-a4paper,
-total={210mm,297mm},
-left=1.15in,
-right=0.85in,
-top=1.0in,
-bottom=1.0in,
+\geometry{a4paper, total = {210mm, 297mm}, left=31.75mm, right=25.4mm, top=25.4mm, bottom=25.4mm}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\fontsize{16}{19}\selectfont\chaptertitlename\ \thechapter}
+  {20pt}
+  {\huge\centering}
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\fontsize{16}{15}\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Custom environments for various pages
+\newenvironment{coverPage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+\newenvironment{certificatePage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+
+\newenvironment{Abstract}{
+    \clearpage
+    \pagestyle{plain}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \begin{center}
+}{
+    \end{center}
 }
 
+\newenvironment{acknowledgment}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+}{
+    \end{center}
+}
+\newenvironment{tableOfContents}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont TABLE OF CONTENTS}
+    \vspace{0.8cm}
+}{
+    \end{center}
+}
+\newenvironment{ListOfFigures}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF FIGURES}
+    \vspace{1cm}
+}{
+    \end{center}
+}
+\newenvironment{ListOfTables}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF TABLES}
+    \vspace{1cm}
+}{
+    \end{center}
+}
+
+% Set up fancy style for introduction and onwards
+\fancypagestyle{fancy}{
+  \fancyhf{}
+  \fancyhead[C]{\textbf{SWACHHASETU}}
+  \fancyfoot[L]{\textbf{Dept of CS\&E, CEC}}
+  \fancyfoot[R]{\textbf{Page \thepage}}
+  \renewcommand{\headrulewidth}{2pt}
+  \renewcommand{\footrulewidth}{2pt}
+}
+
+% Redefine plain style to match fancy for chapter pages
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[C]{\textbf{ SWACHHASETU}}
+  \fancyfoot[L]{\textbf{Dept of CS\&E, CEC}}
+  \fancyfoot[R]{\textbf{Page \thepage}}
+  \renewcommand{\headrulewidth}{2pt}
+  \renewcommand{\footrulewidth}{2pt}
+}
+
+% Modify chapter command to use fancy style
+\let\oldchapter\chapter
+\renewcommand{\chapter}{\thispagestyle{fancy}\oldchapter}
+
+\newenvironment{introduction}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{LiteratureSurvey}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{systemrequirement}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+
+\newenvironment{systemdesign}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{implementation}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{ResultAndAnalysis}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+% Begin the document
 \begin{document}
 
-\pagestyle{empty}
+% ----------------------- Cover Page Start -------------------------------
 
-%%%%%%%%%%%%%%%%%%% Front Page  %%%%%%%%%%%%%%%%%%%%%%%
-\begin{center}
-{\large \textbf{Visvesvaraya Technological University, Belagavi – 590018.}}
-\begin{figure}[hbtp]
+\begin{coverPage}
+    \textbf{\fontsize{18}{22}\selectfont \makebox[0pt][c]{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}} \\
+    \vspace{0.1in}
+    {\fontsize{16}{22}\selectfont \enquote{Jnana Sangama}, Belagavi, Karnataka-590018} \\
+    \vspace{0.3in}
+    \includegraphics[scale=0.3]{vtu.png} \\
+    \vspace{0.3in}
+    
+    \textbf{\fontsize{18}{22}\selectfont A MINI PROJECT REPORT} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont ON} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont SWACHHASETU} \\
+    \vspace{0.2in}
+    {\fontsize{14}{22}\selectfont Submitted in partial fulfillment of the requirements for the degree of} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont BACHELOR OF ENGINEERING} \\ 
+    \textbf{\fontsize{14}{22}\selectfont IN} \\ 
+    \textbf{\fontsize{14}{22}\selectfont COMPUTER SCIENCE AND ENGINEERING} \\
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Submitted by} \\
+    \vspace{0.08in}
+    \begin{tabular}{ll}
+    
+    \fontsize{14}{22}\selectfont \textbf{4CB23CS115} & 
+        \fontsize{14}{22}\selectfont \textbf{Prathamesh Prabhu} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB23CS120} & 
+    \fontsize{14}{22}\selectfont \textbf{Priyanka V. Gaonkar} \\
+    \end{tabular} \\
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Under the Guidance of} \\
+        \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont Mrs. Babitha Ganesh Kulal} \\
+    \fontsize{12}{22}\selectfont  \textbf{Assistant Professor, Dept. of CSE}\\
+    \vspace{0.2in}
+
+    \includegraphics[scale=0.45]{CEC-logo.jpg} \\
+    {\textbf{\fontsize{14}{22}\selectfont DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}} \\
+    \textbf{\fontsize{18}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+      {\textbf{\fontsize{12}{20}\selectfont {(\textbf{An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE})}} \\
+    {\textbf{\fontsize{14}{22}\selectfont \makebox[0pt][c]{SUDHINDRA NAGARA, BENJANAPADAVU, MANGALURU-574219, KARNATAKA}}} \\
+    \vspace{0.1in}
+    {\textbf{\fontsize{14}{22}\selectfont 2025-2026}}
+\end{coverPage}
+
+\clearpage
+% ----------------------- Cover Page Done -------------------------------
+
+% ----------------------- Certificate Page Start ------------------------
+\begin{certificatePage}
+    \textbf{\fontsize{20}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+     \vspace{0.1in}
+     {\textbf{\fontsize{12}{20}\selectfont {(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE)}} \\
+      \vspace{0.1in}
+     {\textbf{\fontsize{14}{22}\selectfont \makebox[0pt][c]{SUDHINDRA NAGARA, BENJANAPADAVU, MANGALURU-574219, KARNATAKA}}} \\
+    \vspace{0.2in}
+    \textbf{\fontsize{12}{22}\selectfont DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+    \vspace{0.3in}
+    \includegraphics[scale = 0.45]{CEC-logo.jpg}
+    \\
+    \begin{center}
+        
+   
+    \vspace{0.4in}
+    \textbf{\fontsize{20}{22}\selectfont CERTIFICATE} \\
+    \vspace{0.2in}
+    \justify
+    \fontsize{11}{22}\selectfont This is to certify that the mini project work entitled \textbf{SWACHHASETU} carried out by \textbf{Mr. Prathamesh Prabhu (4CB23CS115)}, \textbf{Ms. Priyanka V. Gaonkar (4CB23CS120)},  a bonafide student of \\ \textbf{CANARA ENGINEERING COLLEGE, BENJANAPADAVU} in partial fulfillment for the award of \textbf{BACHELOR OF ENGINEERING} in \textbf{COMPUTER SCIENCE AND ENGINEERING} of the \textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI} during the year \textbf{2025 - 2026}. The project report has been approved as it satisfies the academic requirements in respect of Mini Project work prescribed for the said Degree.\\
+    \\
+    \\
+    \\
+    \noindent
+     \end{center}
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Project Guide} \\  
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Head of Department} \\
+        \end{center}
+    \end{minipage}
+\end{certificatePage}
+\clearpage
+
+% ----------------------- Certificate Page Done ------------------------
+
+% ----------------------- Abstract Page ------------------------
+
+\begin{Abstract}
+\fontsize{20}{22}\textbf{ABSTRACT}
+\vspace{0.15in}
+\justify
+\onehalfspacing
+\fontsize{12}{22}\selectfont
+
+SwachhaSetu – “A Digital Bridge Connecting Citizens and Waste Collectors in Mangalore” is a smart waste management solution designed to overcome challenges such as delayed garbage collection, lack of transparency, and poor communication. The system allows citizens to report waste issues, request pickups, and track their status, while waste collectors receive real-time task updates for smoother operations. Municipal authorities gain improved monitoring and data-driven insights. With features like notifications and an easy-to-use interface, SwachhaSetu enhances transparency, reduces response time, and supports initiatives like Swachh Bharat and Smart City Mangalore, ultimately promoting a cleaner and more efficient waste management process.
+
+\end{Abstract}
+
+\begin{acknowledgment}
+    \textbf{\fontsize{20}{22}\selectfont ACKNOWLEDGEMENT}\\
+    \vspace{0.1in}
+    \justify
+    \fontsize{12}{22}\selectfont It is our great pleasure to acknowledge the assistance and contributions of all the people who helped us to make my Mini Project successful.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We wish to express our deepest gratitude to project guide \textbf{Mrs. Babitha Ganesh Kulal }, \\ \textbf{Department of Computer Science and Engineering, CEC, Mangalore}, for her invaluable support, guidance, and encouragement throughout the duration of this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We extend our thanks to \textbf{Ms.  Saritha Suvarna}, \textbf{Project Coordinator,  Department of \\ Computer Science \& Engineering, CEC, Mangalore}, for her exceptional support and coordination throughout this project. 
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We extremely grateeful to \textbf{Dr.Karthik Pai B H , Head of the Computer Science \& \\ Engineering Department, CEC}, Mangalore, for his moral support and valuable suggestions throughout this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We thank \textbf{Dr. Demian Antony D'Mello, Vice Principal, CEC, Mangalore}, for his valuable suggestions throughout this project.
+      \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We would like to express our deepest gratitude to our \textbf{Principal, Dr. Nagesh H R} whose
+unwavering support and guidance have been instrumental in the successful completion of this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We thank all the faculty and technical staff of \textbf{ Department of Computer Science & Engineering} for their kind help. \\ \\
+    \noindent\makebox[\textwidth][r]{
+        \begin{minipage}{2.8in}
+        
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Mr. Prathamesh Prabhu } \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS115} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont  Ms. Priyanka V. Gaonkar} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS120} \\
+         \hfill
+        \end{minipage}
+    }
+    
+\end{acknowledgment}
+\clearpage
+
+
+% ----------------------- Table OF Contents Page ------------------------
+\begin{tableOfContents}
+\end{tableOfContents}
+
+% Generate table of contents without changing page style
+\begingroup
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+  \renewcommand{\contentsname}{}  % Remove the default "Contents" heading
+  
+  % Remove dots from TOC
+  \makeatletter
+  \renewcommand{\@dotsep}{10000}
+  
+  % Preserve the current page style
+  \let\ps@toc\ps@plain
+  \let\ps@plain\ps@plain
+  
+  % Add custom headings
+  \noindent\textbf{\fontsize{16}{22}\selectfont CHAPTERS\hfill PAGE NO}\par
+  \vspace{0.5em} % Add some space after the headings
+  
+  % Make main section titles normal (non-bold)
+  \let\oldl@chapter\l@chapter
+  \def\l@chapter#1#2{\oldl@chapter{\normalfont#1}{\normalfont#2}}
+  
+  % Use \@starttoc instead of \tableofcontents to avoid page style changes
+  \@starttoc{toc}
+  \makeatother
+\endgroup
+
+\clearpage
+
+% ----------------------- Table Of Contents Page Done ------------------------
+
+
+% ----------------------- List of Figures Page ----------------------%
+% LIST OF FIGURES
+
+
+
+% Avoid page breaks
+
+
+
+
+\begin{table}[h]
 \centering
-%\includegraphics[width=2.3cm,height=3cm]{vtu.jpg}
-\end{figure}
-
-\textbf{A MINI PROJECT REPORT}
-\par
-\textbf{ON}
-\par
-\vspace{6pt}
-{\Large \textbf{SWACHHASETU}}
-\par
-\vspace{12pt}
-\par
-\textit{\textbf{Submitted in partial fulfillment for the award of degree of }}
-\par
-\vspace{12pt}
-\large \textbf{BACHELOR OF ENGINEERING }
-\par
-\textbf{in}
-\par
-\large \textbf{COMPUTER SCIENCE \& ENGINEERING }
-\par
-\vspace{12pt}
-\textit{\textbf{Submitted by}}
-
-\begin{center}
-\begin{tabular}{l@{\hspace{2cm}}r}
-\textbf{\large Prathamesh Prabhu } & \textbf{4CB23CS115} \\
-\textbf{\large Priyanka V. Gaonkar } & \textbf{4CB23CS120} \\
-\end{tabular}
-\end{center}
-
-\vspace{12pt}
-\textit{\textbf{Under the Guidance of}}
-\par
-\vspace{6pt}
-\textbf{Mrs. Babitha Ganesh Kulal }
-\par
-\vspace{2pt}
-\normalsize { Designation, Department of CSE }
-\par
-\begin{figure}[hbtp]
-\centering
-%\includegraphics[scale=0.6]{./pic/CEC-logo}\textbf{}
-\end{figure}
-\large \textbf{DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING}
-\par \Large \textbf{CANARA ENGINEERING COLLEGE}
-
-{\large{(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC 'A' GRADE)}}
-\par
-{\large \textbf{Sudhindra Nagar, Benjanapadavu, Mangaluru - 574219, Karnataka.}}
-\par 
-{\Large \textbf{2025-26}}
-\end{center}
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% Certificate Page %%%%%%%%%%%%%%%
-
-\begin{center}
-\LARGE \textbf{CANARA ENGINEERING COLLEGE}
-\par
-
-\par \large{(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE)}
-\par \vspace{3pt}
-\large \textbf{Sudhindra Nagar, Benjanapadavu, Mangaluru - 574219, Karnataka.}
-\par \vspace{12pt}  
-\par
-\large \textbf{DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING }
-\par
-\begin{figure}[hbtp]
-\centering
-%\includegraphics[scale=0.5]{./pic/CEC-logo}
-\end{figure}
-
-
-{\Large \textbf{CERTIFICATE}}
-\end{center}
-\justifying
-\par
-\setstretch{1.2}
-\noindent 
-This is to certify that the mini project work entitled \textbf{SWACHHASETU} carried out by \textbf{Mr. Prathamesh Prabhu(4CB23CS115)} and \textbf{Ms. Priyanka V. Gaonkar(4CB23CS120) } bonafide studnets of \textbf{CANARA ENGINEERING COLLEGE} in partial fulfillment for the award of Bachelor of Engineering in COMPUTER SCIENCE \& ENGINEERING of the Visvesvaraya Technological University, Belagavi during the year 2025-26. It is certified that all corrections/suggestions indicated for Internal Assessment as indicated during internal assessment. The project report has been approved as it satisfies the academic requirements in respect of project work prescribed for the said degree. 
-
-\par
-\vspace{0.55in}
-\setstretch{1.15}
-
-\begin{tabularx}{0.95 \textwidth} { 
-   >{\raggedright\arraybackslash}X 
-   >{\raggedleft\arraybackslash}X }
-     \textbf{Mrs. Babitha Ganesh Kulal } & \textbf{Prof/Dr.  HoD-Name} \\
-     Project Guide &  HoD     \,\,\,\,\,\,\,\ \\
-\end{tabularx}
-
-\par
-\vspace{0.55in}
-\setstretch{1.15}
-
-
-
-
-\begin{flushleft}
-1. \ldots\ldots\ldots\ldots\ldots\ldots \ldots \hspace{5.8cm} \,\,\,\,\,\,\,\,\,\,\,\,\,\,\ \ldots\ldots\ldots\ldots \ldots\ldots\ldots 
-\par
-\vspace{0.1in}	
-2. \ldots\ldots\ldots\ldots\ldots\ldots \ldots \hspace{5.8cm} \,\,\,\,\,\,\,\,\,\,\,\,\,\,\ \ldots\ldots\ldots\ldots \ldots\ldots\ldots 
-\end{flushleft}
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%% Declaration Page  %%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\pagestyle{plain}
-\setstretch{1.5}
-\pagenumbering{roman}
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{\numberline{}Abstract}
-The abstract of a mini project report should be concise, typically within 150–250 words and written in a single paragraph. It should briefly present the background or motivation of the study, state the main objective, describe the methods or technologies used, and summarize the key results or outcomes. The abstract must end with the significance or potential applications of the project. It should be written in a formal tone using clear and simple language, avoiding technical jargon, references, figures, or tables.
-\par
-Keywords : Keywords related to your project.
-\setstretch{1.2}
-\renewcommand{\contentsname}{Table of Contents}
-\tableofcontents
-\addcontentsline{toc}{chapter}{\numberline{}Table of Contents}
-\listoffigures
-\addcontentsline{toc}{chapter}{\numberline{}List of Figures}
-\listoftables
-\addcontentsline{toc}{chapter}{\numberline{}List of Tables}
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%% Headders and Footers %%%%%%%%%%%%%%%%%%%%%%
-
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{\fontsize{10}{12} \selectfont PROJ-TITLE }
-\rhead{\fontsize{10}{12} \selectfont Chapter \thechapter}
-\lfoot{\fontsize{10}{12} \selectfont Department of DEPT-NAME, CEC, Benjanapadavu,Mangaluru}
-\rfoot{\fontsize{10}{12} \selectfont Page \thepage}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0.5pt}
-
-
-%%%%%%%%%%%%%%%%%%%%%%% CHapetr 1:Introduction %%%%%%%%%%%%%%%%%%%%%
-
-\setstretch{1.2}
-\pagenumbering{arabic}
-
-\chapter{Introduction}
-The introduction should provide a brief background of the problem domain, explaining the importance and relevance of the project. It should clearly state the problem addressed and the motivation behind choosing the topic. The objectives of the project must be mentioned, outlining the main goals to be achieved through the proposed system. The introduction should also define the scope of the work, specifying what is covered and any limitations. Finally, it may include a short overview of the methodology or technologies used and a brief outline of the report structure.
-
-
-%%%%%%%%%%%%%%%%%%%%%%% CHapetr 2:Literature Survey %%%%%%%%%%%%%%%%
-
-\chapter{Literature Survey}
-
-The literature survey section should include a review of a minimum of ten research papers closely related to the project topic. For each paper, you should briefly describe the aim of the study, methods used, major findings, and relevance to your project\cite{choki2022design}. \\
-In addition to the written description, you should also include a summary table that highlights key details from each reviewed paper for easy comparison\cite{govindaraj2020online}. The table may contain columns such as Author(s) \& Year, Title of the Paper, Methodology/Technique Used, Findings/Results, and limitations.
-
-
-
-\begin{table}[H]
-\centering
-\caption{Summary of Literature Review}
-\begin{tabular}{|p{1cm}|p{3cm}|p{3cm}|p{2.5cm}|p{2cm}|p{2.5cm}|}
-\hline
-\textbf{Sl. No.} & \textbf{Author(s) \& Year} & \textbf{Title} & \textbf{Methodology} & \textbf{Findings} & \textbf{Limitations} \\
-\hline
-1 & A. Kumar et al. (2021) & Machine Learning for Crop Yield Prediction & Random Forest Regression & Achieved 92\% accuracy in yield prediction & Limited dataset and region coverage \\
-\hline
+{\Large \textbf{LIST OF FIGURES}} % Centered and correctly formatted title
+\vskip 3em % Add vertical spacing after the title
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{FIGURE NO.} & \textbf{FIGURE NAME} & \textbf{PAGE NO.} \\ \\
+  4.1 & System Architecture Design of Eventra & 13 \\ \\
+  4.2 & Use Case Diagram of Eventra & 14 \\ \\
+  6.1 & Landing page of Eventra & 20 \\ \\
+  6.2 & Selecting role for Signup of Eventra & 21 \\ \\
+  6.3 &  Signup pages for different user roles of Eventra & 21 \\ \\
+  6.4 & Login page of Eventra & 22 \\ \\
+  6.5 & Service provider dashboard of Eventra & 22 \\ \\
+  6.6 & Logout in dashboard of Eventra & 23 \\ \\
+  6.7 & Event creator dashboard of Eventra & 23 \\ \\
+  6.8 & Complete details of service page of Eventra & 24 \\ \\
+  6.9 & Selected category page of Eventra & 25 \\ \\
+  6.10 & Event summary page of Eventra & 26 \\ \\
+  6.11 & Confirm event feature of Eventra & 27 \\ \\
+  6.12 & Dashboard of Event creator after event planning of Eventra & 27 \\ \\
+  6.13 & Logout pop up of Eventra & 28 \\ \\
+  6.14 & Email sent for different users of Eventra & 29\\ \\
+ 
+ 
 \end{tabular}
 \end{table}
 
 
-   
-%%%%%%%%% CHapetr 3:Software Requirements Specification %%%%%%%%%%%%
 
-\chapter{System Analysis and Design}
 
-\begin{itemize}
-    \item \textbf{Existing System:} Explain the current methods or systems being used for the same purpose. Highlight their drawbacks, limitations, and inefficiencies that justify the need for improvement.
 
-    \item \textbf{Proposed System:} Describe the newly developed system, its objectives, and how it overcomes the shortcomings of the existing system. Emphasize its advantages, improved performance, and innovative aspects\cite{indrason2021blockchain}.
 
-    \item \textbf{System Requirements:} List both hardware and software requirements essential for implementation. Mention system configuration, tools, programming languages, and platforms used.
 
-    \item \textbf{System Design:} Present the overall structure and workflow of the proposed system using diagrams such as the System Architecture Diagram, Data Flow Diagram (DFD), and UML diagrams (Use Case, Class, and Sequence diagrams). Each diagram should be followed by a short explanation describing its purpose and functionality.
-\end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%% CHapetr 4: System Design %%%%%%%%%%%%%%%%%
 
- \newpage
- \chapter{Implementation}
-
-\begin{itemize}
-    \item \textbf{Overview:} Describe the overall implementation process and how the system components were integrated to achieve the project objectives.
-    
-    \item \textbf{Modules Description:} Explain each functional module of the system, its purpose, and how it interacts with other modules.
-    
-    \item \textbf{Algorithm / Pseudocode:} Present the main algorithm or logic flow used in the system. Include pseudocode or step-by-step procedures for the core functions.
-    
-    \item \textbf{Tools and Technologies Used:} Mention the programming languages, frameworks, libraries, and development tools used for implementation.
-    
-    \item \textbf{Interface and Screenshots:} Display the key interfaces or output screens of the system with brief explanations of their functions.
-\end{itemize}
-% Code for inserting figure
-\begin{figure}[H]
+\begin{ListOfTables}
 \centering
-%\includegraphics[width=0.8\textwidth]{pic/modular.png}
-\caption{System Architecture Diagram}
-\label{fig:architecture}
-\end{figure}
-As shown in Figure~\ref{fig:architecture}, the proposed system consists of multiple interconnected modules that handle data processing, model training, and visualization.
+\vskip 0.8em % Add small spacing after the title (adjust as needed)
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{TABLE NO.} & \textbf{TABLE NAME} & \textbf{PAGE NO.} \\ \\
+  5.1 & Test Cases for Login functionality of Eventra & 18 \\ \\
+  5.2 & Test Cases for Signup functionality of Eventra & 18 \\ \\
+  5.3 & Test Cases for other functionalities of Eventra & 18 \\ \\
+\end{tabular}
+\end{ListOfTables}
 
-\newpage
 
-% -------------------- Chapter 5 --------------------
-\chapter{Results and Discussion}
+
+
+
+
+
+
+
+
+% ----------------------- List Of Tables Page ------------------------
+
+
+% \begin{ListOfTables}
+% \end{ListOfTables}
+
+% % Generate list of tables without changing page style
+% \begingroup
+%   \let\clearpage\relax
+%   \let\cleardoublepage\relax
+%   \renewcommand{\listtablename}{}  % Remove the default "List of Tables" heading
+%   % \addtocontents{lot}{\protect\thispagestyle{plain}}
+  
+%   % Remove dots from list of tables
+%   \makeatletter
+%   \renewcommand{\@dotsep}{10000}
+  
+%   % Preserve the current page style
+%   \let\ps@lot\ps@plain
+%   \let\ps@plain\ps@plain
+  
+%   % Use \@starttoc instead of \listoftables to avoid page style changes
+%   \@starttoc{lot}
+%   \makeatother
+% \endgroup
+
+% \clearpage
+% % Reset the page style for subsequent pages
+% \pagestyle{fancy}
+
+% Set up the header and footer for all pages from here onwards
+
+\begin{introduction}
+    \chapter{Introduction}
+    \vspace{0.2in}
+    \pagestyle{fancy}
+    \section{Overview}
+    \justify
+\fontsize{12}{22} \selectfont 
+In today’s rapidly urbanizing world, efficient waste management has become one of the most pressing challenges faced by developing cities. The growing population, changing lifestyle patterns, and increased consumption of packaged goods have led to a significant rise in solid waste generation. Despite regular efforts by municipal authorities, cities like Mangalore continue to experience issues such as irregular garbage collection, unsegregated waste disposal, and poor communication between citizens and waste management departments. These inefficiencies not only affect the cleanliness of the environment but also have severe implications for public health, sanitation, and urban aesthetics.
+
+\justify
+\vspace{0.1in}
+To address these challenges, the project titled “SwachhaSetu – A Digital Bridge Connecting Citizens and Waste Collectors in Mangalore” has been conceptualized as a modern, intelligent, and citizen-centric platform that leverages digital technology to streamline waste management operations. The system aims to bridge the communication gap between citizens, waste collectors, and the Mangalore City Corporation (MCC) through a unified digital interface. By doing so, it ensures timely garbage collection, transparent grievance redressal, and increased accountability among stakeholders.
+\justify
+\vspace{0.1in}
+The SwachhaSetu platform is designed to provide an interactive and real-time communication channel for all users involved in the waste collection process. Citizens can report uncollected garbage, request waste pickups, and track the collection status through a mobile or web application. On the other hand, waste collectors can receive daily tasks, mark completed tasks, and communicate with supervisors efficiently. The municipal administration can monitor the entire operation using an admin dashboard.
+
+\justify
+\vspace{0.1in}
+
+SwachhaSetu encourages participation from all sections of society from local residents to municipal staff fostering a sense of shared responsibility toward maintaining a clean city.
+\justify
+\vspace{0.1in}
+
+From a societal standpoint, the SwachhaSetu project contributes to a cleaner, greener, and healthier Mangalore. It empowers citizens to take an active role in maintaining cleanliness, reduces the administrative burden of manual monitoring, and promotes the goals of Swachh Bharat Mission and Smart City initiatives. Moreover, it demonstrates how technology can be effectively utilized to solve civic issues through digital governance and community collaboration.
+
+Overall, SwachhaSetu represents a forward-thinking approach to urban waste management one that combines technology, transparency, and public participation. By building a digital bridge between citizens and waste collectors, the system enhances operational efficiency, promotes accountability, and contributes to a sustainable future for Mangalore city.
+\vspace{0.1in}
+\section{Problem Statement}
+\justify
+\fontsize{12}{22}\selectfont
+
+Mangalore continues to face issues in waste collection due to poor coordination between citizens, waste collectors, and municipal authorities. Delayed pickups, lack of clarity on collection schedules, and manual record-keeping reduce efficiency. Existing systems do not integrate all stakeholders or provide real-time updates. SwachhaSetu addresses these challenges by offering a unified mobile platform where admins manage users and collectors, citizens view collection status through a calendar, and waste collectors update daily tasks, ensuring smoother and more transparent waste management.
+
+\section{Scope of the Project}
+\justify
+\fontsize{12}{22}\selectfont
 
 \begin{itemize}
-    \item \textbf{Overview:} Summarize the experiments or testing conducted to evaluate the system.
-    
-    \item \textbf{Results:} Present the obtained results in the form of tables, charts, or screenshots. Highlight the major outcomes achieved.
-    
-    \item \textbf{Performance Evaluation:} Discuss how the system performs compared to expectations or existing solutions in terms of accuracy, speed, efficiency, or usability.
-    
-    \item \textbf{Discussion:} Interpret the results, relate them to the objectives, and discuss any observations or insights gained during implementation.
-    
-    \item \textbf{Limitations:} Mention any constraints or limitations identified during testing and implementation.
+    \item Real-time waste collection request and status tracking.
+    \item Dedicated mobile interfaces for citizens, waste collectors, and admin.
+    \item Digital task assignment and completion updates.
+    \item Calendar-based view for collected and missed waste days.
+    \item Automated notifications for task updates and reminders.
+    \item Improved coordination, transparency, and public participation.
 \end{itemize}
 
-% -------------------- Chapter 6 --------------------
-\chapter{Conclusion and Future Work}
 
-\begin{itemize}
-    \item \textbf{Conclusion:} Provide a concise summary of the project, including the problem addressed, approach adopted, and key outcomes achieved.
-    
-    \item \textbf{Achievements:} Highlight the major contributions or innovations of your project and how they meet the stated objectives.
-    
-    \item \textbf{Limitations:} Briefly restate the system’s current limitations or areas that could not be covered within this scope.
-    
-    \item \textbf{Future Enhancements:} Suggest possible improvements, extensions, or new features that can be added in future work to enhance the system’s performance or usability.
-\end{itemize}
  
 
-%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 2:Literature Survey %%%%%%%%%%%%%%%
+
+\begin{LiteratureSurvey}
+
+\chapter{Literature Survey}
+\pagestyle{fancy}
+\justify
+\fontsize{12}{18}\selectfont
+\doublespacing
+
+Reno, Joshua. \textbf{“Waste and Waste Management.”} discusses global challenges related to waste generation and disposal. The study emphasizes the need for structured systems and improved communication between authorities and citizens to achieve efficient waste management. This aligns with the objective of SwachhaSetu, which aims to streamline waste reporting and collection through a unified digital platform \cite{reno2015waste}.  
+\vspace{0.15in}
+
+Amasuomo, Ebikapade and Baird, Jim. \textbf{“The Concept of Waste and Waste Management.”} explain the definition of waste, types of waste generated, and the limitations of conventional waste-handling methods. Their work highlights the importance of sustainability, public participation, and improved tracking mechanisms. The insights presented strongly support SwachhaSetu’s goal of enabling real-time tracking and enhanced citizen engagement \cite{amasuomo2016concept}.  
+\vspace{0.15in}
+
+Chowdhury, Belal and Chowdhury, Morshed U. \textbf{“RFID-based Real-Time Smart Waste Management System.”} proposed a real-time waste monitoring system using RFID technology to track waste levels and collection timing. Their findings show that automation significantly reduces delays in garbage collection and enhances efficiency. Although SwachhaSetu does not use RFID, the concept of real-time updates inspires its mobile-based task and status monitoring structure \cite{chowdhury2007rfid}.  
+\vspace{0.15in}
+
+Wolniak, Radosław and Grebski, Wies. \textbf{“Waste Management in Smartphone Applications as an Element of Smart City Development.”} explore how mobile applications support waste segregation, reporting, and communication between citizens and municipal bodies. Their study shows that smartphone-based systems improve transparency and public involvement—core goals also addressed by SwachhaSetu \cite{wolniak2023waste}.  
+\vspace{0.15in}
+
+Jain, Palak et al. \textbf{“Design and Development of Smart Waste Management System.”} present a model integrating sensors, cloud services, and automated notifications for efficient waste handling. Their system demonstrates improved coordination and reduced manual effort. SwachhaSetu similarly enhances efficiency by digitizing communication between citizens, collectors, and admins through task assignment and notification modules \cite{jain2023design}.  
+\vspace{0.15in}
+
+Hasan, BM et al. \textbf{“Smart Waste Management System using IoT.”} describe an IoT-based approach for detecting waste levels and optimizing collection. While SwachhaSetu does not incorporate IoT devices, the study reinforces the importance of digitization, automation, and data-driven decision making for urban waste management \cite{hasan2017smart}.  
+\vspace{0.15in}
+
+Omar, MF et al. \textbf{“Implementation of Spatial Smart Waste Management System in Malaysia.”} focus on the use of GIS and spatial mapping to plan waste collection routes. Their research demonstrates that location-based insights significantly enhance collection efficiency. SwachhaSetu adopts a similar approach by enabling collectors to access user locations and task details digitally \cite{omar2016implementation}.  
+\vspace{0.15in}
+
+Dugdhe, Saurabh et al. \textbf{“Efficient Waste Collection System.”} propose a framework integrating IoT sensors and cloud storage to monitor waste bin levels. Their work highlights the need for timely notifications and automated decision-making—features that SwachhaSetu provides through its alert system for collection status updates \cite{dugdhe2016efficient}.  
+\vspace{0.15in}
+
+Gutierrez, Jose M. et al. \textbf{“Smart Waste Collection System Based on Location Intelligence.”} introduce a geospatial approach to optimize waste collection routes. The research demonstrates the effectiveness of location intelligence in reducing operational costs and improving service efficiency. SwachhaSetu incorporates similar concepts by enabling admin monitoring and optimizing collector task assignments \cite{gutierrez2015smart}.  
+\vspace{0.15in}
+
+Arribas, Claudia Andrea et al. \textbf{“Urban Solid Waste Collection System using Mathematical Modelling and GIS.”} examine data-driven waste management by predicting accumulation patterns and optimizing routes. Their findings support the use of digital systems like SwachhaSetu for informed decision-making, improving coordination between citizens and waste collectors \cite{arribas2010urban}.  
+
+\end{LiteratureSurvey}
+
+\begin{systemrequirement}
+    
+
+\chapter{Software Requirements Specification}
+\vspace{0.3in}
+\pagestyle{fancy}
+\justify
+\fontsize{12}{22}\selectfont
+
+
+\section{Introduction}
+\justify
+\fontsize{12}{22}\selectfont
+
+The Software Requirements Specification (SRS) defines the functional and non-functional requirements of the SwachhaSetu mobile application, a platform designed to connect citizens with waste collectors in Mangalore. It serves as a formal reference for developers, stakeholders, and administrators, ensuring a shared understanding of system expectations and quality standards. The primary objective of SwachhaSetu is to streamline waste collection operations, enhance communication, and improve transparency by enabling users to submit and track waste collection requests digitally. The system supports efficient urban waste management while aligning with the goals of the Swachh Bharat Mission and Smart City initiatives.
+
+\subsection{Purpose}
+    \justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+
+The purpose of this document is to clearly define all functional and non-functional requirements of the SwachhaSetu system. It acts as a reference for developers, testers, and stakeholders throughout the design, implementation, and validation phases. The system aims to streamline waste collection, improve communication among all users, and ensure timely responses to citizen complaints. Ultimately, SwachhaSetu provides a reliable, scalable, and user-friendly platform to make waste management in Mangalore smarter and more efficient.
+\vspace{0.1in}
+\subsection{Definitions, Acronyms and Abbrevations}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item API: Application Programming Interface – a set of protocols enabling communication between software components.
+    \item Admin: The municipal administrator responsible for managing users, waste collectors, and complaints.
+    \item Citizen: The end-user who reports waste-related issues or requests collection services.
+    \item Waste Collector: The staff responsible for collecting waste and updating task completion status through the app.
+    \item Dashboard: The web interface used by admin, citizen and collectors to monitor and manage operations.
+\end{itemize}
+
+\vspace{0.2in}
+\section{The Overall Description}
+\justify
+\vspace{0.2in}
+%0.1
+\subsection{Product Perspective}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+The SwachhaSetu system is a mobile-based digital application designed to streamline communication between citizens, waste collectors, and municipal administrators. The app enables citizens to submit waste collection requests, track their status in real time, and receive timely notifications. Waste collectors can view assigned tasks, access location details, and update collection progress directly through the app. Administrators manage users, monitor system activity, and oversee requests through a centralized backend system. By integrating all stakeholders into one platform, SwachhaSetu eliminates manual communication gaps and enhances efficiency, transparency, and accountability in the daily waste management process.
+\vspace{0.1in}
+\subsection{User Classes and Characteristics}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+The system serves the following user types:
+\begin{itemize}
+    \item \textbf{Citizens}:Report waste collection issues, request pickups, and track the waste collections.
+    \item \textbf{Waste Collectors}:View assigned tasks, update collection progress, and communicate with supervisors.
+     \item \textbf{Admin (Municipal Authority)}:Monitor real-time operations, assign tasks, manage users, and waste collectors.
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Operating Environment}
+\justify
+\fontsize{12}{22}\selectfont
+\vspace{0.1in}
+
+The SwachhaSetu system is developed using modern mobile application technologies and cloud-based backend services. The application runs on Android devices, while the backend and development tools operate across multiple platforms.
+\\
+Backend: Node.js with Express.js \\
+Frontend (Mobile App): React Native \\
+Database: MongoDB (Cloud or Local) \\
+Development Operating Systems: Windows, Linux, or macOS \\
+Mobile Operating System: Android and ios
+
+\vspace{0.1in}
+\section{ Specific Requirements}
+This section contains all of the functional and quality requirements of the system. It gives detailed description of the system and all its features.
+
+\vspace{0.1in}
+\subsection{Hardware Requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item Processor: Intel Core i3 or higher (recommended i5 for smoother development)
+    
+    \item RAM: Minimum 4 GB
+    
+    \item Storage: Minimum 100 GB free space for project files, Node modules, and Android SDK
+    
+    \item Network: Stable internet connection for API communication, package installation, and database access (MongoDB)
+\end{itemize}
+
+
+\vspace{0.1in}
+\subsection{Software Requirements}
+\justify
+\fontsize{12}{22}\selectfont
+\vspace{0.1in}
+
+\begin{itemize}
+    \item Operating System:  
+    Windows 10 / Linux / macOS / Android
+
+    \item IDE / Editor:  
+    Visual Studio Code
+
+    \item Programming Languages:  
+    JavaScript
+
+    \item Frameworks and Libraries:
+    React Native,
+    Node.js and Express.js
+
+    \item Database:
+    MongoDB 
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Functional Requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item Users (citizens) must be able to log in securely.
+    \item Waste collectors must be able to receive assigned tasks and update collection progress.
+    \item The admin should manage users, and waste collectors efficie.
+    \item Notifications should be sent to users and staff for feedback.
+    \item The system must maintain detailed records for analytics and reporting.
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Non-Functional Requirements}
+\justify
+\fontsize{12}{22}\selectfont
+\vspace{0.1in}
+
+\begin{enumerate}
+    \item \textbf{Performance:}  
+    The system must process waste collection requests and update their status quickly, ensuring smooth real-time communication between citizens and waste collectors. It should handle multiple simultaneous users without delays.
+
+    \item \textbf{Reliability:}  
+    The application should function consistently without crashes, data loss, or unexpected interruptions, ensuring dependable service during peak usage.
+
+    \item \textbf{Availability:}  
+    SwachhaSetu should remain accessible 24/7 so that users can submit requests, track their status, or receive notifications at any time.
+
+    \item \textbf{Maintainability:}  
+    The system should be easy for developers to update, debug, and enhance. Modifications should require minimal downtime and allow for quick deployment of new features.
+
+    \item \textbf{Scalability:}  
+    The application should be capable of supporting an increasing number of users, waste collectors, and data volume as more areas of the city adopt the platform.
+
+    \item \textbf{Portability:}  
+    Since SwachhaSetu is a mobile application, it should work seamlessly across different Android devices and be adaptable for future versions or additional platforms if required.
+\end{enumerate}
+\end{systemrequirement}
+
+%%%%%%%%% CHapetr 3:Software Requirements Specification %%%%%%%%%%%%
+
+\begin{systemdesign}
+\chapter{System Analysis and Design}
+\vspace{0.3in}
+\section{Architectural Design}
+\vspace{0.1in}
+     \justify
+    \fontsize{12}{22}\selectfont
+System design provides a high-level view of how different components of the SwachhaSetu system interact to achieve efficient waste management. It outlines the relationship among citizens, waste collectors, administrators, the backend server, and the database.
+
+The SwachhaSetu architecture connects all stakeholders through a centralized backend powered by Node.js and MongoDB. Citizens use a mobile application to request waste collection, view their collection calendar, and track daily status updates. Waste collectors access their assigned tasks through the mobile app and update task completion in real-time. The admin manages user registrations, assigns collectors, monitors activity, and maintains overall system control through a backend panel.
+
+All interactions between users and the system are handled by the Application Server, which manages request processing, routing, authentication, and database operations. MongoDB stores all user data, task assignments, calendar updates, and activity logs. Notifications are sent to citizens and waste collectors to ensure timely communication about task status, missed pickups, and important alerts.
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=5in, height=4in]{system1.png}
+\begin{figure}
+        \centering
+        
+        \label{fig:enter-label}
+    \end{figure}
+        \centering
+    \caption {System Architecture Design of SwachhaSetu}
+    \label{fig:architecture}
+\end{figure}
+
+\vspace{0.1in}
+\section{Use Case Diagram}
+\justify
+\fontsize{12}{22}\selectfont
+\vspace{0.1in}
+
+The Use Case Diagram illustrates how the primary actors—Citizens, Waste Collectors, and Admin—interact with the SwachhaSetu system, highlighting key functionalities and the overall communication flow. It helps in understanding how each user performs specific actions and how the system responds to their inputs.
+
+Citizens begin by registering and logging into the mobile application. Once authenticated, they can submit waste collection requests, view their color-coded collection calendar, and track real-time status updates. The system sends notifications regarding task assignments, progress updates, and completion alerts, ensuring transparency and timely communication.
+
+Waste Collectors act as operational users. They log into their dashboards to view assigned tasks, access citizen location details, and update collection progress. Their updates instantly reflect in the citizen’s calendar, improving synchronization and operational efficiency.
+
+The Admin functions as the supervisory actor. Administrators register citizens and waste collectors, assign tasks, manage user accounts, monitor collection activities, and oversee system performance to ensure smooth functioning.
+
+A Notification Service acts as a secondary component that sends automated alerts to users regarding collection updates, missed pickups, delays, and other important messages.
+
+Overall, the Use Case Diagram demonstrates how SwachhaSetu integrates all stakeholders into a single platform, enabling efficient communication, task management, and transparent waste collection across Mangalore.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6.5in]{usercase1.png}
+    \caption{Use Case Diagram of SwachhaSetu}
+    \label{fig:usecase}
+\end{figure}
+
+\clearpage
+\pagestyle{fancy}
+\end{systemdesign}
+% ----------------------- Implementation Page ------------------------ 
+\begin{implementation}
+\chapter{Implementation and Testing}
+\pagestyle{fancy}
+\vspace{0.2in}
+\justify
+\fontsize{12}{22}\selectfont
+
+\section{Implementation}
+
+The SwachhaSetu platform is a comprehensive digital system developed to efficiently connect citizens with waste collectors in Mangalore. It is built as a mobile application, with each technology carefully selected to ensure scalability, reliability, smooth performance, and a user-friendly experience.
+
+\vspace{0.1in}
+\subsection{Frameworks Used}
+\vspace{0.2in}
+\subsubsection{MongoDB}
+MongoDB is used as the primary database for storing and managing user details, waste collection requests, feedback, and location-based information. Its flexible schema and scalability make it suitable for handling real-time and dynamic data generated by the SwachhaSetu mobile application.
+
+\subsubsection{Express.js}
+Express.js is used to build the backend API for SwachhaSetu. It manages all server-side operations, including handling user requests, processing waste collection data, managing authentication, and communicating with the MongoDB database.
+
+\subsubsection{React Native}
+React Native is used to develop the mobile application for both Android (and optionally iOS). It provides a smooth, responsive interface and ensures seamless user interactions. The framework allows building a fast, intuitive UI suitable for both citizens and waste collectors.
+
+\subsubsection{Node.js}
+Node.js serves as the runtime environment for executing backend JavaScript code. Its event-driven and non-blocking architecture ensures that the system can efficiently handle multiple user operations simultaneously, such as sending requests and fetching updates.
+
+\vspace{0.2in}
+\section{Testing}
+Testing is a crucial phase to ensure that the system meets all functional and non-functional requirements. SwachhaSetu undergoes multiple levels of testing to validate its reliability, performance, and usability before deployment.
+
+\subsection{Unit Testing}
+Unit testing is performed to verify the functionality of the individual modules in SwachhaSetu. This includes testing the user registration and authentication modules to ensure secure and accurate account management, validating waste collection request submission to confirm that requests are properly recorded, checking the scheduling and notification modules to ensure timely updates for both citizens and waste collectors, and evaluating the feedback module to confirm user inputs are correctly captured and stored. Unit testing ensures that each module performs its intended function correctly before integration, contributing to a stable and reliable system.
+
+\subsection{Integration Testing}
+Integration testing is conducted to ensure that different modules of SwachhaSetu interact correctly. This involves verifying the connection between user requests and waste collector schedules, validating the interaction between the mobile frontend and backend APIs to confirm accurate data transmission, and checking consistency between MongoDB data and server responses. Integration testing identifies and resolves issues in inter-module communication, ensuring a smooth and reliable end-to-end workflow before final deployment.
+
+\subsection{System Testing}
+System testing evaluates the entire SwachhaSetu application as a whole to ensure it operates reliably under real-world conditions. Functional testing is performed to verify that all major features, including request tracking, notifications, and feedback, work as expected. Performance testing checks that the system can handle multiple simultaneous users without crashes or delays. Security testing is conducted to safeguard user data and prevent unauthorized access, while usability testing ensures the interface is intuitive and user-friendly for both citizens and waste collectors. Through comprehensive system testing, the platform’s overall performance, security, and user experience are validated prior to deployment.
+
+\subsection{Test Case}
+\justify
+\fontsize{12}{22}\selectfont
+A test case defines the conditions under which SwachhaSetu is verified. For example:
+
+Test Case 1: Submitting a new waste collection request
+
+Input: User fills the form and submits
+
+Expected Result: Request is successfully stored in the database, and notification is sent to the assigned collector.
+
+Test Case 2: Feedback submission
+
+Input: User provides feedback.
+
+Expected Result: Feedback is recorded.
+
+By rigorously implementing these testing strategies, SwachhaSetu ensures a reliable, efficient, and user-friendly experience for both citizens and waste collectors.
 \newpage
-\pagestyle{plain}
-\renewcommand{\bibname}{References}
-\addcontentsline{toc}{chapter}{References}
-\printbibliography
+\end{implementation}
 
-%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----------------------- Result Page ------------------------ 
+\begin{ResultAndAnalysis}
+\chapter{Results and Analysis}
+\vspace{0.2in}
+\fontsize{12}{22}\selectfont
 
+The results and analysis of the SwachhaSetu – A Digital Bridge Connecting Citizens and Waste Collectors in Mangalore project highlight the performance, functionality, and practical usability of the platform. The primary goal was to create a system that allows citizens to easily connect with waste collectors for timely and efficient waste management. The core features—including user registration, waste collection requests, scheduling, notifications, and feedback—were successfully implemented and tested.
+
+Functionality was evaluated by verifying smooth integration between the frontend and backend through APIs. Data consistency, real-time updates, and error handling were observed to work effectively during testing. Performance analysis was conducted using tools such as Postman for API validation and MongoDB Atlas for database monitoring, ensuring stable response times and the ability to handle multiple user interactions.
+
+User experience was assessed based on interface simplicity, navigation flow, and ease of interaction. Feedback from test users—citizens and waste collectors—helped evaluate satisfaction and identify minor areas for refinement. Overall, the analysis confirms that SwachhaSetu successfully streamlines the waste collection workflow, enhances communication between citizens and waste collectors, and provides a reliable, user-friendly digital solution for urban waste management.
+\begin{figure}[H]
+    \centering
+    \captionsetup{labelfont=bf}
+    \includegraphics[width=0.9\linewidth,height=6in]{Swachhasetu Logo.png}
+    \caption{Logo of SwachhaSetu}
+    \label{fig:swachhasetu-logo}
+\end{figure}
+
+\justify
+\fontsize{12}{22}\selectfont
+The logo of SwachhaSetu represents a clean, connected, and sustainable waste management system for Mangalore. It symbolizes the bridge between citizens, waste collectors, and municipal authorities through digital technology. The logo reflects the core purpose of the platform—promoting cleanliness, transparency, and efficient waste collection through a unified and modern digital solution.
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{labelfont=bf}
+
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth,height=4.1in]{ecsignup2.png}
+        \caption{Citizen Signup Page of SwachhaSetu}
+        \label{fig:citizen-signup}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth,height=4.1in]{spsignup2.png}
+        \caption{Waste Collector Signup Page of SwachhaSetu}
+        \label{fig:collector-signup}
+    \end{subfigure}
+
+    \caption{Signup Pages for Different User Roles in SwachhaSetu}
+    \label{fig:signup-pages}
+\end{figure}
+
+\justify
+\fontsize{12}{22}\selectfont
+Users can register on SwachhaSetu based on their role—citizens create accounts to submit and track waste collection requests, while waste collectors register to receive and update their assigned daily tasks.
+
+
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{labelfont=bf}
+    \includegraphics[width=0.8\linewidth,height=3in]{loginec.png}
+    \caption{Login Page of SwachhaSetu}
+    \label{fig:login-page}
+\end{figure}
+
+\justify
+\fontsize{12}{22}\selectfont
+Users can log in to access their respective dashboards. Citizens can track waste collection status and view their calendar, waste collectors can view assigned tasks and update progress, and admins can manage users and monitor system operations.
+
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=3in]{dashboardg.png}
+    \caption{Service provider dashboard of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+Service providers have access to a dedicated dashboard that features a \textbf{Gallery} section, enabling them to upload and showcase images of their services to attract potential clients. Additionally, a \textbf{Details} section allows service providers to update service descriptions. Both the Gallery and Details sections are fully customizable, providing flexibility to accommodate evolving needs.
+\label{fig:sp-dashboard}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=3in]{dashboard.png}
+    \caption{Logout in dashboard of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+    Users can log out by clicking on the profile icon located in the navigation bar and selecting the "Logout" option from the dropdown menu. 
+    \label{fig:logout-dashboard}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=3in]{noeventplan.png}
+    \caption{Event creator dashboard of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+This is fresh dashboard of event creator indicates that no events have been planned yet. To get started, users can click the "Plan Event" button in the dashboard, which allows them to plan a new event. This feature guides users through the event planning process, helping them define event details such as date, location, and type, and ensures a smooth transition from planning to execution.    \label{fig:no-event}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.9\linewidth,height=4in]{featuresel.png}
+    \caption{Complete details of service page of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+The detailed service display page in Eventra provides a comprehensive view of a selected service provider's offerings. This page showcases all essential details, including the provider's name, category, location, cost, contact information (email and phone), and a description of their services and gallery. 
+    \label{fig:features-page}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=6in]{selcategory.png}
+    \caption{Selected category page of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+     For each selected category, the creator can choose a single service provided by the service Provider.
+    \label{fig:features-page}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=5.5in]{finalplan.png}
+    \caption{ Event summary page of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+    The page provides a comprehensive overview of all selected services, the invitee list, and the to-do list for the event. Additionally, an edit option is available, allowing the creator to make necessary modifications before finalizing and confirming the event details.
+    \label{fig:features-page}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=3in]{confirm.png}
+    \caption{Confirm event feature of Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+  Once the event details are selected and confirmed, the system prompts the user for double verification. By clicking \textbf{Yes, confirm}, the event is finalized and email is sent.
+    \label{fig:features-page}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=3in]{eventcreated.png}
+    \caption{Dashboard of event creator after event planning in Eventra}
+    \begin{justify}
+     \fontsize{12}{22}\selectfont
+The dashboard for the event creator in Eventra provides an organized overview of their planned events. Upon successfully creating an event, a confirmation message popup appears, notifying the user that the event has been created successfully. This feature ensures clarity and confirms that the event has been added to their dashboard.    \label{fig:features-page}
+     \end{justify}
+\end{figure}
+
+\begin{figure}
+    \captionsetup{labelfont=bf}
+    \centering
+    \includegraphics[width=0.8\linewidth,height=4in]{Logout.png}
+    \caption{Logout pop up of Eventra}
+    \label{fig:features-page}
+
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \captionsetup{labelfont=bf}
+    \begin{subfigure}[b]{0.43\textwidth}
+        \includegraphics[width=\linewidth,height=6in]{MSG.png}
+        \caption{Email sent to the Event Creator of Eventra.}
+        \label{fig:ec-signup}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\linewidth,height=6in]{inquiry.png}
+\caption{Email sent to the Service Provider of Eventra.}        \label{fig:sp-signup}
+    \end{subfigure}
+    \caption{Email sent for different users of Eventra.}
+    \label{fig:signup-pages}
+    \begin{justify}
+     \fontsize{12}{20}\selectfont
+    The Event Creator will receive an email confirming the successful creation of their event, while the Service Provider will receive an email notification regarding the selection by the Event Creator.
+    \end{justify}
+\end{figure}
+
+\end{ResultAndAnalysis}
+
+% ----------------------- Conclusion Page ------------------------ 
+\chapter{Conclusion and Future Work}
+\vspace{0.2in}
+\section*{Conclusion}
+\fontsize{12}{22}\selectfont
+SwachhaSetu, with its innovative approach to urban waste management, provides a centralized platform that effectively connects citizens with waste collectors in Mangalore. By simplifying the process of waste collection requests, scheduling, and feedback, SwachhaSetu offers a reliable and user-friendly solution that enhances communication and operational efficiency. The platform streamlines waste management tasks, ensuring timely collection, improved accountability, and better citizen engagement in maintaining a cleaner city.
+
+\vspace{0.1in}
+\section*{Future Work}
+\begin{itemize}
+\fontsize{12}{22}\selectfont
+    \item \textbf{Enhanced Security Measures}: Future versions of SwachhaSetu will incorporate advanced security features, such as data encryption and multi-factor authentication, to safeguard user information and enhance trust.
+    
+    \item \textbf{Automated Scheduling Optimization}: Introducing AI-based scheduling to optimize routes and collection timings, improving efficiency and reducing operational delays.
+
+    \item \textbf{Data Analytics for Waste Management}: Implementing analytics dashboards to track collection trends, user engagement, and waste types, helping the municipality and collectors make data-driven decisions.
+\end{itemize}
+ \fontsize{12}{22}\selectfont
+With these planned enhancements, SwachhaSetu aims to not only address current waste management challenges but also create a smarter, more efficient, and sustainable system for the citizens of Mangalore.
+
+\bibliographystyle{unsrt}
+\bibliography{reference}
 \end{document}
